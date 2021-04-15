@@ -9,4 +9,4 @@ squirt = floor . sqrt . fromIntegral;
 
 main :: IO ();
 main = getArgs >>= return . (!!0) >>= \ a ->
-  mapM_ putStr $ intersperse "," $ map show $ filter isPrime [2..10^(read a :: Integer)];
+  mapM_ putStr $ intersperse "," $ map show $ filter isPrime [2..10^(read a)];

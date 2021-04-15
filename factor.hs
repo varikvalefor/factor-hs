@@ -1,8 +1,5 @@
 import ThePrimes;
 
-reed :: String -> Integer;
-reed = read;
-
 printFactors :: Integer -> IO ();
 printFactors k = putStr (show k ++ ": ") >> showNums
   where
@@ -10,4 +7,4 @@ printFactors k = putStr (show k ++ ": ") >> showNums
     showNums = mapM_ (putStr . (++ " ") . show) listFacs >> putStrLn "";
 
 main :: IO ();
-main = getLine >>= printFactors . reed >> main;
+main = getLine >>= printFactors . read >> main;

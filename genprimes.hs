@@ -2,7 +2,7 @@ import System.Environment
 import Data.List;
 
 isPrime :: Integer -> Bool;
-isPrime k = not $ any (\a -> mod k a == 0) [2..squirt k - 1];
+isPrime k = not $ any ((== 0) . mod k) [2..squirt k - 1];
 
 squirt :: Integer -> Integer;
 squirt = floor . sqrt . fromIntegral;

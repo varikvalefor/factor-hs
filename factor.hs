@@ -4,10 +4,10 @@ reed :: String -> Integer;
 reed k = read k :: Integer;
 
 printFactors :: Integer -> IO ();
-printFactors k = putStr (show k ++ ": ") >> showTheNums
+printFactors k = putStr (show k ++ ": ") >> showNums
   where
-    listNums = filter  ((==0) . mod k) thePrimes
-    showTheNums = mapM_ (\ a -> putStr $ show a ++ " ") listNums >> putStrLn "";
+    listNums = filter ((==0) . mod k) thePrimes
+    showNums = mapM_ (\ a -> putStr $ show a ++ " ") listNums >> putStrLn "";
 
 main :: IO ();
 main = getLine >>= printFactors . reed >> main;

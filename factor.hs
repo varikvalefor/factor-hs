@@ -1,7 +1,7 @@
 import ThePrimes;
 
 reed :: String -> Integer;
-reed k = read k :: Integer;
+reed = read;
 
 printFactors :: Integer -> IO ();
 printFactors k = putStr (show k ++ ": ") >> showNums

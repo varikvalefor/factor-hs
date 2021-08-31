@@ -1,5 +1,3 @@
-import ThePrimes;
-
 main :: IO ();
 main = getLine >>= prt . read >> main
   where

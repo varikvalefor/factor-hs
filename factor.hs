@@ -31,6 +31,6 @@ factors n
 -- | @isqrt n@ is the integer square root of @n@.
 isqrt :: Integer -> Integer;
 isqrt n 
-  | n <= fromIntegral (maxBound :: Int) = floor $ sqrt $ fromIntegral n + 0.0
+  | n <= fromIntegral (maxBound :: Int) = floor $ sqrt $ fromIntegral n
   | otherwise = head $ filter ((>= n) . (^2)) [1..];
   

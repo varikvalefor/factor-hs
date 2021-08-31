@@ -22,11 +22,11 @@ primeFactors n
 -- If @n@ is prime, then @factors n == [n]@.
 factors :: Integer -> [Integer]
 factors n
-  | f == [1] = [n]
-  | otherwise = [f !! 1, n `div` (f !! 1)]
+  | allFactors == [1] = [n]
+  | otherwise = [allFactors !! 1, n `div` (allFactors !! 1)]
   where
-  f :: [Integer]
-  f = filter ((==0) . (n `mod`)) [1..isqrt n];
+  allFactors :: [Integer]
+  allFactors = filter ((==0) . (n `mod`)) [1..isqrt n];
 
 -- | @isqrt n@ is the integer square root of @n@.
 isqrt :: Integer -> Integer;

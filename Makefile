@@ -1,4 +1,4 @@
-build: genprimes.hs factor.hs
+build: factor.hs
         ghc -O2 factor
 delcompile:
         rm *.hi *.o

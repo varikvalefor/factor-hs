@@ -8,8 +8,8 @@ main = getLine >>= prt . read >> main
     | product (primeFactors n) /= n = print (primeFactors n) >> error "primeFactors is wrong!!!"
     | otherwise = putStrLn $ concat [show n, ": ", unwords $ map show $ primeFactors n];
 
--- | @primeFactors k@ is a list of numbers @j@ such that
--- @product j == k@ and @j@ is a subset of the prime numbers.
+-- | @primeFactors k@ is a list of primes @j@ such that
+-- @product j == k@.
 primeFactors :: Integer -> [Integer];
 primeFactors n = maybe [n] (concatMap primeFactors) $ factors n;
 

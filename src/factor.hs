@@ -32,6 +32,11 @@ firstNonUnityFactor n = allFactors !? 1
 
 -- | @isqrt n@ is the integer square root of @n@.
 isqrt :: Integer -> Integer;
-isqrt n 
-  | n <= fromIntegral (maxBound :: Int) = floor $ sqrt $ fromIntegral n
-  | otherwise = head $ filter ((>= n) . (^2)) [1..];
+isqrt n = helpy 0 $ n + 1
+  where
+  helpy :: Integer -> Integer -> Integer
+  helpy lowBound highBound
+    | lowBound == highBound - 1 = lowBound
+    | newBound^2 > n = helpy lowBound newBound
+    | otherwise = helpy newBound highBound
+    where newBound = (highBound + lowBound) `div` 2;

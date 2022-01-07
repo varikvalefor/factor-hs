@@ -20,7 +20,7 @@ primeFactors n = maybe [n] (concatMap primeFactors) $ factors n;
 factors :: Integer -> Maybe [Integer]
 factors n = (\d -> [d, n `div` d]) <$> firstNonUnityFactor n;
 
--- \| If @n@ is prime, then @firstNonUnityFactor@ is 'Nothing'.
+-- | If @n@ is prime, then @firstNonUnityFactor@ is 'Nothing'.
 --
 -- If @n@ is composite, then @firstNonUnityFactor n@ is the smallest
 -- non-1 divisor of @n@.

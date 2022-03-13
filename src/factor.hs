@@ -5,8 +5,11 @@ main = getLine >>= prt . read >> main
   where
   prt :: Integer -> IO ()
   prt n
-    | product (primeFactors n) /= n = print (primeFactors n) >> error "primeFactors is wrong!!!"
-    | otherwise = putStrLn $ concat [show n, ": ", unwords $ map show $ primeFactors n];
+    | product (primeFactors n) /= n = wrongRoutine n
+    | otherwise = putStrLn $ concat [show n, ": ", theFactors n]
+  theFactors n = unwords $ map show $ primeFactors n
+  wrongRoutine n = print (primeFactors n) >> error wrongMsg
+  wrongMsg = "primeFactors is wrong!!!";
 
 -- | @primeFactors k@ is a list of primes @j@ such that
 -- @product j == k@.

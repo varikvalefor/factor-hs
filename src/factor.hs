@@ -68,8 +68,13 @@ toFactorTriplets :: Integer -> S.Set (Integer, Integer, Integer);
 toFactorTriplets = fl . recurse . catMaybes . pure . toFactorTriplet
   where
   fl = S.fromList
-  recurse l = bool (recurse $ l ++ newTriplets l) l $ null $ newTriplets l
-  newTriplets l = catMaybes $ map toFactorTriplet $ filter (\a -> filter (\(t,_,_) -> t == a) l == [] && not (isPrime a)) $ concat $ map (\(a,b,c) -> [b,c]) l
+  recurse l = bool (recurse $ l ++ newTriplets) l $ null newTriplets
+    where
+    newTriplets = catMaybes $ map toFactorTriplet tbc
+    isConvertible j = null (filter ((== j) . fst') l) && not (isPrime j)
+    fst' (a,_,_) = a
+    -- \| "@tbc@" is an abbreviation of "to be converted".
+    tbc = filter isConvertible $ concat $ map (\(a,b,c) -> [b,c]) l;
 
 -- | If @n@ is prime, then @firstNonUnityFactor n@ is 'Nothing'.
 --

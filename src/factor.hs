@@ -71,7 +71,8 @@ toFactorTriplets = fl . recurse . catMaybes . pure . toFactorTriplet
   recurse l = bool (recurse $ l ++ newTriplets) l $ null newTriplets
     where
     newTriplets = catMaybes $ map toFactorTriplet tbc
-    isConvertible j = null (filter ((== j) . fst') l) && not (isPrime j)
+    isConvertible j = not $ alreadyCalculated j || isPrime j
+    alreadyCalculated j = null $ filter ((== j) . fst') l
     fst' (a,_,_) = a
     -- \| "@tbc@" is an abbreviation of "to be converted".
     tbc = filter isConvertible $ concat $ map (\(a,b,c) -> [b,c]) l;

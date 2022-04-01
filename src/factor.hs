@@ -63,7 +63,7 @@ toFactorTriplet n = (\[a,b] -> (n,a,b)) <$> factors n;
 --
 -- \[
 --   \forall n \in t,\ 
---   \left\{1, k\right\} \cap t = \left\{\right\}.
+--   \left\{1, k\right\} \cap n = \left\{\right\}.
 -- \]
 toFactorTriplets :: Integer -> S.Set (Integer, Integer, Integer);
 toFactorTriplets = fl . recurse . catMaybes . pure . toFactorTriplet

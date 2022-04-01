@@ -1,3 +1,4 @@
+module Main where
 import Data.Bool;
 import Data.List;
 import Data.Maybe;
@@ -46,7 +47,7 @@ toFactorTriplet n = (\[a,b] -> (n,a,b)) <$> factors n;
 -- \]
 --
 -- \[
---   \max \left\{a_0 : a \in t\right\} = k.
+--   \max \left\{a_1 : a \in t\right\} = k.
 -- \]
 --
 -- \[

@@ -1,6 +1,5 @@
 module Main where
 import Data.Bool;
-import Data.List;
 import Data.Maybe;
 import Data.List.Extra;
 import qualified Data.Set as S;

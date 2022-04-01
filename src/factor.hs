@@ -2,12 +2,13 @@ module Main where
 import Data.Bool;
 import Data.Maybe;
 import Data.List.Extra;
+import Numeric.Natural;
 import qualified Data.Set as S;
 
 main :: IO ();
 main = getLine >>= prt . read >> main
   where
-  prt :: Integer -> IO ()
+  prt :: Natural -> IO ()
   prt n
     | product (primeFactors n) /= n = wrongRoutine n
     | otherwise = putStrLn $ concat [show n, ": ", theFactors n]
@@ -17,27 +18,27 @@ main = getLine >>= prt . read >> main
 
 -- | @primeFactors k@ is a list of primes @j@ such that
 -- @product j == k@.
-primeFactors :: Integer -> [Integer];
+primeFactors :: Natural -> [Natural];
 primeFactors n = maybe [n] (concatMap primeFactors) $ factors n;
 
 -- | If @n@ is a composite number, then @factors n@ is 'Just' a 2-list
 -- whose product equals @n@.
 --
 -- If @n@ is prime, then @factors n == 'Nothing'@.
-factors :: Integer -> Maybe [Integer]
+factors :: Natural -> Maybe [Natural]
 factors n = (\d -> [d, n `div` d]) <$> firstNonUnityFactor n;
 
 -- | @isPrime k@ iff @k@ is prime.
-isPrime :: Integer -> Bool;
+isPrime :: Natural -> Bool;
 isPrime = isNothing . factors;
 
 -- | If @n@ is prime, then @toFactorTriplet n@ is 'Nothing'.
 -- @toFactorTriplet n@ is otherwise 'Just' a 3-tuple @(a,b,c)@
 -- such that @a == n@ and @a == b * c@.
-toFactorTriplet :: Integer -> Maybe (Integer, Integer, Integer);
+toFactorTriplet :: Natural -> Maybe (Natural, Natural, Natural);
 toFactorTriplet n = (\[a,b] -> (n,a,b)) <$> factors n;
 
--- | Where \(k\) is any 'Integer' and \(t\) denotes
+-- | Where \(k\) is any 'Natural' and \(t\) denotes
 -- @toFactorTriplets k@...
 --
 -- \[
@@ -72,7 +73,7 @@ toFactorTriplet n = (\[a,b] -> (n,a,b)) <$> factors n;
 --   \left\langle a_2, a_3\right\rangle =
 --   \left\langle b_3,b_2\right\rangle.
 -- \]
-toFactorTriplets :: Integer -> S.Set (Integer, Integer, Integer);
+toFactorTriplets :: Natural -> S.Set (Natural, Natural, Natural);
 toFactorTriplets = fl . recurse . catMaybes . pure . toFactorTriplet
   where
   fl = S.fromList
@@ -89,17 +90,17 @@ toFactorTriplets = fl . recurse . catMaybes . pure . toFactorTriplet
 --
 -- If @n@ is composite, then @firstNonUnityFactor n@ is the smallest
 -- non-1 divisor of @n@.
-firstNonUnityFactor :: Integer -> Maybe Integer;
+firstNonUnityFactor :: Natural -> Maybe Natural;
 firstNonUnityFactor n = allFactors !? 1
   where
-  allFactors :: [Integer]
+  allFactors :: [Natural]
   allFactors = filter ((==0) . (n `mod`)) [1..isqrt n];
 
 -- | @isqrt n@ is the integer square root of @n@.
-isqrt :: Integer -> Integer;
+isqrt :: Natural -> Natural;
 isqrt n = helpy 0 $ n + 1
   where
-  helpy :: Integer -> Integer -> Integer
+  helpy :: Natural -> Natural -> Natural
   helpy lowBound highBound
     | lowBound == highBound - 1 = lowBound
     | newBound^2 > n = helpy lowBound newBound

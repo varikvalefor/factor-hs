@@ -62,7 +62,8 @@ toFactorTriplet n = (\[a,b] -> (n,a,b)) <$> factors n;
 --
 -- \[
 --   \forall n \in t,\ 
---   \left\{1, k\right\} \cap n = \left\{\right\}.
+--   \left\{1, n_1\right\} \cap \left\{n_2, n_3\right\} =
+--   \left\{\right\}.
 -- \]
 --
 -- \[

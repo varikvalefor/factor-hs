@@ -83,7 +83,7 @@ toFactorTriplets = fl . recurse . catMaybes . pure . toFactorTriplet
     alreadyCalculated j = null $ filter ((== j) . fst') l
     fst' (a,_,_) = a
     -- \| "@tbc@" is an abbreviation of "to be converted".
-    tbc = filter isConvertible $ concat $ map (\(a,b,c) -> [b,c]) l;
+    tbc = filter isConvertible $ concat $ map (\(_,b,c) -> [b,c]) l;
 
 -- | If @n@ is prime, then @firstNonUnityFactor n@ is 'Nothing'.
 --

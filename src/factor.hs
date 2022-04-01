@@ -43,7 +43,7 @@ toFactorTriplet n = (\[a,b] -> (n,a,b)) <$> factors n;
 --
 -- \[
 --   \forall u \in t,\ 
---   t_1 = t_2 \cdot t_3.
+--   u_1 = u_2 \cdot u_3.
 -- \]
 --
 -- \[
